@@ -110,8 +110,8 @@ export default function DetectViewPage({ imageUrl, detections, onBack }) {
               onClick={() => setActiveLabel(null)}
               type="button"
               className={`relative w-full rounded-2xl px-4 py-3 text-left text-sm font-extrabold shadow-[0_10px_0_rgba(0,0,0,0.18)] ring-2 ring-black/10 transition active:translate-y-[2px] active:shadow-[0_7px_0_rgba(0,0,0,0.18)] ${activeLabel === null
-                  ? "bg-[#111827] text-white"
-                  : "bg-[#FFF7CC] text-black hover:-translate-y-[1px]"
+                ? "bg-[#111827] text-white"
+                : "bg-[#FFF7CC] text-black hover:-translate-y-[1px]"
                 }`}
             >
               <span className="absolute left-4 top-2 h-3 w-3 rounded-full bg-white/35 ring-1 ring-black/10" />
@@ -138,8 +138,8 @@ export default function DetectViewPage({ imageUrl, detections, onBack }) {
                     onClick={() => setActiveLabel(label)}
                     type="button"
                     className={`relative w-full rounded-2xl px-4 py-3 text-left text-sm font-extrabold ring-2 ring-black/10 transition active:translate-y-[2px] ${isActive
-                        ? "text-white shadow-[0_10px_0_rgba(0,0,0,0.25)]"
-                        : "bg-white text-black shadow-[0_8px_0_rgba(0,0,0,0.12)] hover:-translate-y-[1px]"
+                      ? "text-white shadow-[0_10px_0_rgba(0,0,0,0.25)]"
+                      : "bg-white text-black shadow-[0_8px_0_rgba(0,0,0,0.12)] hover:-translate-y-[1px]"
                       }`}
                     style={{
                       backgroundColor: isActive ? c : "white",
@@ -170,8 +170,8 @@ export default function DetectViewPage({ imageUrl, detections, onBack }) {
 
                       <span
                         className={`shrink-0 rounded-full px-2 py-1 text-xs font-black ring-2 ring-black/10 ${isActive
-                            ? "bg-white/20 text-white"
-                            : "bg-[#FFF7CC] text-black"
+                          ? "bg-white/20 text-white"
+                          : "bg-[#FFF7CC] text-black"
                           }`}
                       >
                         {count}
@@ -182,9 +182,6 @@ export default function DetectViewPage({ imageUrl, detections, onBack }) {
               })}
             </div>
 
-            <div className="mt-4 rounded-2xl bg-[#FFF7CC] px-4 py-3 text-xs font-extrabold text-black ring-2 ring-black/10">
-              ⭐ Tip: pick a piece type to spotlight only those boxes!
-            </div>
           </aside>
 
           {/* IMAGE VIEW */}
@@ -249,9 +246,6 @@ export default function DetectViewPage({ imageUrl, detections, onBack }) {
                 })}
               </div>
 
-              <div className="mt-3 text-xs font-bold text-black/55">
-                Tip: click a piece type on the left to highlight only those boxes.
-              </div>
             </div>
           </section>
         </div>
