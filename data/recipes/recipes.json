@@ -1,0 +1,16 @@
+{
+    "recipes": [
+      {
+        "id": "mini_car",
+        "name": "Mini Car",
+        "parts": {
+          "3001": 2,
+          "3003": 4
+        },
+        "steps": [
+          "instructions_img/mini_car/step_01.png"
+        ]
+      }
+    ]
+  }
+  
