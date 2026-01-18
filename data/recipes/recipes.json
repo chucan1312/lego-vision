@@ -1,16 +1,220 @@
 {
     "recipes": [
-      {
-        "id": "mini_car",
-        "name": "Mini Car",
-        "parts": {
-          "3001": 2,
-          "3003": 4
+        {
+            "id": "angel",
+            "name": "Angel",
+            "parts": {
+                "2420": 2,
+                "3002": 1,
+                "3003": 1,
+                "3004": 3,
+                "3005": 3,
+                "3021": 1,
+                "3022": 1,
+                "3023": 3,
+                "3024": 2,
+                "3039": 1,
+                "3040": 6,
+                "3065": 1,
+                "3665": 5,
+                "4032": 1,
+                "4073": 2
+            },
+            "steps": [
+                "recipes/instructions_img/angel/1_1x.png",
+                "recipes/instructions_img/angel/2_1x.png",
+                "recipes/instructions_img/angel/3_1x.png",
+                "recipes/instructions_img/angel/4_1x.png",
+                "recipes/instructions_img/angel/5_1x.png",
+                "recipes/instructions_img/angel/6_1x.png",
+                "recipes/instructions_img/angel/7_1x.png",
+                "recipes/instructions_img/angel/8_1x.png",
+                "recipes/instructions_img/angel/9_1x.png",
+                "recipes/instructions_img/angel/10_1x.png",
+                "recipes/instructions_img/angel/11_1x.png",
+                "recipes/instructions_img/angel/12_1x.png",
+                "recipes/instructions_img/angel/13_1x.png",
+                "recipes/instructions_img/angel/14_1x.png",
+                "recipes/instructions_img/angel/15_1x.png",
+                "recipes/instructions_img/angel/16_1x.png"
+            ]
         },
-        "steps": [
-          "instructions_img/mini_car/step_01.png"
-        ]
-      }
+        {
+            "id": "flamingo",
+            "name": "Flamingo",
+            "parts": {
+                "3004": 3,
+                "3021": 1,
+                "3039": 1,
+                "6215": 2,
+                "87087": 2,
+                "98138": 2
+            },
+            "steps": [
+                "recipes/instructions_img/flamingo/1_1x.png",
+                "recipes/instructions_img/flamingo/2_1x.png",
+                "recipes/instructions_img/flamingo/3_1x.png",
+                "recipes/instructions_img/flamingo/4_1x.png",
+                "recipes/instructions_img/flamingo/5_1x.png",
+                "recipes/instructions_img/flamingo/6_1x.png",
+                "recipes/instructions_img/flamingo/7_1x.png",
+                "recipes/instructions_img/flamingo/8_1x.png"
+            ]
+        },
+        {
+            "id": "radish",
+            "name": "Radish",
+            "parts": {
+                "3002": 1,
+                "3004": 1,
+                "3022": 1,
+                "3039": 2,
+                "3040": 1,
+                "3660": 1
+            },
+            "steps": [
+                "recipes/instructions_img/radish/1_1x.png",
+                "recipes/instructions_img/radish/2_1x.png",
+                "recipes/instructions_img/radish/3_1x.png",
+                "recipes/instructions_img/radish/4_1x.png",
+                "recipes/instructions_img/radish/5_1x.png"
+            ]
+        },
+        {
+            "id": "elephant",
+            "name": "Elephant",
+            "parts": {
+                "2456": 1,
+                "3001": 1,
+                "3004": 3,
+                "3010": 1,
+                "3065": 1,
+                "87087": 2,
+                "98138": 2
+            },
+            "steps": [
+                "recipes/instructions_img/elephant/1_1x.png",
+                "recipes/instructions_img/elephant/2_1x.png",
+                "recipes/instructions_img/elephant/3_1x.png",
+                "recipes/instructions_img/elephant/4_1x.png",
+                "recipes/instructions_img/elephant/5_1x.png",
+                "recipes/instructions_img/elephant/6_1x.png"
+            ]
+        },
+        {
+            "id": "elf_boy",
+            "name": "Elf boy",
+            "parts": {
+                "2357": 1,
+                "3003": 1,
+                "3004": 4,
+                "30136": 1,
+                "3020": 1,
+                "3022": 2,
+                "3023": 1,
+                "3039": 1,
+                "3040": 1,
+                "3298": 1,
+                "3665": 2,
+                "4073": 2
+            },
+            "steps": [
+                "recipes/instructions_img/elf_boy/1_1x.png",
+                "recipes/instructions_img/elf_boy/2_1x.png",
+                "recipes/instructions_img/elf_boy/3_1x.png",
+                "recipes/instructions_img/elf_boy/4_1x.png",
+                "recipes/instructions_img/elf_boy/5_1x.png",
+                "recipes/instructions_img/elf_boy/6_1x.png",
+                "recipes/instructions_img/elf_boy/7_1x.png",
+                "recipes/instructions_img/elf_boy/8_1x.png",
+                "recipes/instructions_img/elf_boy/9_1x.png",
+                "recipes/instructions_img/elf_boy/10_1x.png",
+                "recipes/instructions_img/elf_boy/11_1x.png",
+                "recipes/instructions_img/elf_boy/12_1x.png"
+            ]
+        },
+        {
+            "id": "elf_girl",
+            "name": "Elf Girl",
+            "parts": {
+                "2423": 1,
+                "3001": 1,
+                "3004": 8,
+                "3020": 1,
+                "3021": 2,
+                "3022": 4,
+                "3039": 2,
+                "3040": 2,
+                "3062": 1,
+                "3665": 2,
+                "3688": 1,
+                "4286": 2,
+                "4073": 4
+            },
+            "steps": [
+                "recipes/instructions_img/elf_girl/1_1x.png",
+                "recipes/instructions_img/elf_girl/2_1x.png",
+                "recipes/instructions_img/elf_girl/3_1x.png",
+                "recipes/instructions_img/elf_girl/4_1x.png",
+                "recipes/instructions_img/elf_girl/5_1x.png",
+                "recipes/instructions_img/elf_girl/6_1x.png",
+                "recipes/instructions_img/elf_girl/7_1x.png",
+                "recipes/instructions_img/elf_girl/8_1x.png",
+                "recipes/instructions_img/elf_girl/9_1x.png",
+                "recipes/instructions_img/elf_girl/10_1x.png",
+                "recipes/instructions_img/elf_girl/11_1x.png",
+                "recipes/instructions_img/elf_girl/12_1x.png",
+                "recipes/instructions_img/elf_girl/13_1x.png",
+                "recipes/instructions_img/elf_girl/14_1x.png",
+                "recipes/instructions_img/elf_girl/15_1x.png",
+                "recipes/instructions_img/elf_girl/16_1x.png",
+                "recipes/instructions_img/elf_girl/17_1x.png"
+            ]
+        },
+        {
+            "id": "green_plane",
+            "name": "Green Plane",
+            "parts": {
+                "3034": 2,
+                "3039": 1,
+                "30414": 2,
+                "3065": 1,
+                "3245c": 1,
+                "32952": 2
+            },
+            "steps": [
+                "recipes/instructions_img/green_plane/1_1x.png",
+                "recipes/instructions_img/green_plane/2_1x.png",
+                "recipes/instructions_img/green_plane/3_1x.png",
+                "recipes/instructions_img/green_plane/4_1x.png",
+                "recipes/instructions_img/green_plane/5_1x.png",
+                "recipes/instructions_img/green_plane/6_1x.png"
+            ]
+        },
+        {
+            "id": "jet_ski",
+            "name": "Jet Ski",
+            "parts": {
+                "2431": 2,
+                "30031": 1,
+                "3023": 2,
+                "3034": 1,
+                "41854": 1,
+                "43713": 1,
+                "4871": 1,
+                "51739": 1,
+                "53989": 1,
+                "61678": 2,
+                "4623b": 1
+            },
+            "steps": [
+                "recipes/instructions_img/jet_ski/1_1x.png",
+                "recipes/instructions_img/jet_ski/2_1x.png",
+                "recipes/instructions_img/jet_ski/3_1x.png",
+                "recipes/instructions_img/jet_ski/4_1x.png",
+                "recipes/instructions_img/jet_ski/5_1x.png",
+                "recipes/instructions_img/jet_ski/6_1x.png"
+            ]
+        }
     ]
-  }
-  
+}
