@@ -1,9 +1,17 @@
-export default function ResultsPage({ top10, onSelectBuild, onReset }) {
+export default function ResultsPage({
+    top10,
+    onSelectBuild,
+    onReset,
+    onOpenCorrection,
+  }) {
     return (
       <div style={{ padding: 20 }}>
         <h2>Top 10 Builds</h2>
   
-        <button onClick={onReset}>Start Over</button>
+        <div style={{ display: "flex", gap: 10 }}>
+          <button onClick={onReset}>Start Over</button>
+          <button onClick={onOpenCorrection}>Correct Pieces</button>
+        </div>
   
         <div style={{ marginTop: 20 }}>
           {top10.map((b) => (

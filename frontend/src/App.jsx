@@ -1,11 +1,17 @@
 import { useState } from "react";
 import UploadPage from "./UploadPage";
 import ResultsPage from "./ResultsPage";
+import UserCorrectionPage from "./UserCorrectionPage";
 
 export default function App() {
   const [top10, setTop10] = useState([]);
   const [selectedBuild, setSelectedBuild] = useState(null);
 
+  // correction flow
+  const [showCorrection, setShowCorrection] = useState(false);
+  const [detections, setDetections] = useState([]);
+
+  // Build Viewer
   if (selectedBuild) {
     return (
       <div style={{ padding: 20 }}>
@@ -27,15 +33,47 @@ export default function App() {
     );
   }
 
+  // Correction Page
+  if (showCorrection) {
+    return (
+      <UserCorrectionPage
+        detections={detections}
+        onBack={() => setShowCorrection(false)}
+        onDone={(result) => {
+          // result = { inventory, top10 }
+          setTop10(result.top10 || []);
+          setShowCorrection(false);
+        }}
+      />
+    );
+  }
+
+  // Results Page
   if (top10.length > 0) {
     return (
       <ResultsPage
         top10={top10}
         onSelectBuild={(b) => setSelectedBuild(b)}
-        onReset={() => setTop10([])}
+        onReset={() => {
+          setTop10([]);
+          setDetections([]);
+        }}
+        onOpenCorrection={() => setShowCorrection(true)}
       />
     );
   }
 
-  return <UploadPage onResults={(data) => setTop10(data.top10 || [])} />;
+  // Upload Page
+  return (
+    <UploadPage
+      onResults={(data) => {
+        setTop10(data.top10 || []);
+
+        // IMPORTANT:
+        // UploadPage should also return detections for correction mode.
+        // If you don't have detections yet, you can mock it there.
+        setDetections(data.detections || []);
+      }}
+    />
+  );
 }

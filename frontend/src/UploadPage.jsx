@@ -13,14 +13,26 @@ export default function UploadPage({ onResults }) {
     setMsg("");
 
     try {
-      // analyze-image should return something like:
-      // { inventory: { "3001": 2, "3003": 4 } }
       const analysis = await analyzeImage(file);
 
       const inventory = analysis.inventory || {};
       const matched = await matchBuilds(inventory);
 
-      onResults(matched);
+      // If backend doesn't return detections yet, use demo detections
+      const detections =
+        analysis.detections ||
+        Object.entries(inventory).flatMap(([partId, count]) =>
+          Array.from({ length: count }).map((_, i) => ({
+            id: `${partId}_${i}`,
+            predictedId: partId,
+            correctedId: null,
+          }))
+        );
+
+      onResults({
+        ...matched,
+        detections,
+      });
     } catch (err) {
       setMsg(err.message);
     } finally {

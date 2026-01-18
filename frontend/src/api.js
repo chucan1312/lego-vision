@@ -28,3 +28,15 @@ export function staticUrl(stepPath) {
   // stepPath example: "instructions_img/mini_car/step_01.png"
   return `${API_BASE}/static/${stepPath}`;
 }
+
+export async function applyCorrections(detections) {
+    const res = await fetch("http://localhost:8000/api/apply-corrections", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ detections }),
+    });
+  
+    if (!res.ok) throw new Error("apply-corrections failed");
+    return res.json();
+  }
+  
