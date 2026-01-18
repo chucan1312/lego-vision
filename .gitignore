@@ -1,0 +1,62 @@
+# =========================
+# OS / Editor junk
+# =========================
+.DS_Store
+Thumbs.db
+
+.vscode/
+.idea/
+
+# =========================
+# Python
+# =========================
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Virtual environments
+venv/
+.venv/
+backend/venv/
+backend/.venv/
+
+# Python env files
+backend/.env
+.env
+
+# =========================
+# Node / React
+# =========================
+node_modules/
+frontend/node_modules/
+
+# Build output
+dist/
+frontend/dist/
+
+# Vite cache
+frontend/.vite/
+
+# =========================
+# ML / YOLO / Training
+# =========================
+runs/                 # Ultralytics output (runs/classify/train...)
+ml/runs/
+*.pt                  # model weights
+*.onnx
+
+# =========================
+# Data (big files)
+# =========================
+ml/datasets/
+data/uploads/
+backend/uploads/
+*.zip
+*.tar
+*.tar.gz
+
+# =========================
+# Logs
+# =========================
+*.log
