@@ -1,79 +1,72 @@
 import { useState } from "react";
-import UploadPage from "./UploadPage";
-import ResultsPage from "./ResultsPage";
-import UserCorrectionPage from "./UserCorrectionPage";
+import UploadPage from "./pages/UploadPage";
+import ResultsPage from "./pages/ResultsPage";
+import DetectViewPage from "./pages/DetectViewPage";
+import InstructionsPage from "./pages/InstructionsPage";
 
 export default function App() {
+  const [imageUrl, setImageUrl] = useState("");
+  const [detections, setDetections] = useState([]);
   const [top10, setTop10] = useState([]);
   const [selectedBuild, setSelectedBuild] = useState(null);
 
-  // correction flow
-  const [showCorrection, setShowCorrection] = useState(false);
-  const [detections, setDetections] = useState([]);
+  // Page routing (simple state-based)
+  const [page, setPage] = useState("upload"); 
+  // upload -> results -> detectview -> instructions
 
-  // Build Viewer
-  if (selectedBuild) {
-    return (
-      <div style={{ padding: 20 }}>
-        <button onClick={() => setSelectedBuild(null)}>⬅ Back</button>
-        <h2>{selectedBuild.name}</h2>
-
-        <div style={{ marginTop: 10 }}>
-          {(selectedBuild.steps || []).map((s, i) => (
-            <div key={i} style={{ marginBottom: 10 }}>
-              <img
-                src={`http://localhost:8000/static/${s}`}
-                alt={`step-${i}`}
-                style={{ maxWidth: "100%", border: "1px solid #ccc" }}
-              />
-            </div>
-          ))}
-        </div>
-      </div>
-    );
+  function resetAll() {
+    setImageUrl("");
+    setDetections([]);
+    setTop10([]);
+    setSelectedBuild(null);
+    setPage("upload");
   }
 
-  // Correction Page
-  if (showCorrection) {
+  if (page === "upload") {
     return (
-      <UserCorrectionPage
-        detections={detections}
-        onBack={() => setShowCorrection(false)}
-        onDone={(result) => {
-          // result = { inventory, top10 }
-          setTop10(result.top10 || []);
-          setShowCorrection(false);
+      <UploadPage
+        onDone={({ imageUrl, detections, matched }) => {
+          setImageUrl(imageUrl);
+          setDetections(detections);
+          setTop10(matched.top10 || []);
+          setPage("results");
         }}
       />
     );
   }
 
-  // Results Page
-  if (top10.length > 0) {
+  if (page === "results") {
     return (
       <ResultsPage
         top10={top10}
-        onSelectBuild={(b) => setSelectedBuild(b)}
-        onReset={() => {
-          setTop10([]);
-          setDetections([]);
+        onReset={resetAll}
+        onViewDetections={() => setPage("detectview")}
+        onSelectBuild={(b) => {
+          setSelectedBuild(b);
+          setPage("instructions");
         }}
-        onOpenCorrection={() => setShowCorrection(true)}
       />
     );
   }
 
-  // Upload Page
-  return (
-    <UploadPage
-      onResults={(data) => {
-        setTop10(data.top10 || []);
+  if (page === "detectview") {
+    return (
+      <DetectViewPage
+        imageUrl={imageUrl}
+        detections={detections}
+        onBack={() => setPage("results")}
+      />
+    );
+  }
 
-        // IMPORTANT:
-        // UploadPage should also return detections for correction mode.
-        // If you don't have detections yet, you can mock it there.
-        setDetections(data.detections || []);
-      }}
-    />
-  );
+  if (page === "instructions") {
+    return (
+      <InstructionsPage
+        build={selectedBuild}
+        onBack={() => setPage("results")}
+      />
+    );
+  }
+
+  return null;
 }

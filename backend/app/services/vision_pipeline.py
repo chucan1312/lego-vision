@@ -9,7 +9,7 @@ from app.services.roboflow_detector import detect, to_xywh
 CLASSIFIER_PATH = "../ml/models/lego_classifier_best_5.pt"
 classifier = YOLO(CLASSIFIER_PATH)
 
-CROP_DIR = "data/uploads/crops"
+CROP_DIR = "../data/uploads/crops"
 os.makedirs(CROP_DIR, exist_ok=True)
 
 

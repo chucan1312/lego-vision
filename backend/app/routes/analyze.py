@@ -6,7 +6,7 @@ from app.services.vision_pipeline import detect_and_classify
 
 router = APIRouter()
 
-UPLOAD_DIR = "data/uploads"
+UPLOAD_DIR = "../data/uploads"
 os.makedirs(UPLOAD_DIR, exist_ok=True)
 
 @router.post("/analyze-image")
