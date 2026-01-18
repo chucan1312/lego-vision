@@ -1,15 +1,23 @@
+import os
 from PIL import Image
 
-def normalize_to_rgb(input_path: str) -> str:
+
+def force_jpg(input_path: str) -> str:
     """
-    Ensures the image is RGB (no alpha channel).
-    Overwrites the same file path.
+    Converts image to RGB JPG.
+    Removes alpha channel (RGBA) safely.
+    Deletes original file if extension changes.
     """
     img = Image.open(input_path)
 
-    # Convert RGBA / P / LA / etc -> RGB
     if img.mode != "RGB":
         img = img.convert("RGB")
-        img.save(input_path, "JPEG", quality=95)
 
-    return input_path
+    output_path = os.path.splitext(input_path)[0] + ".jpg"
+    img.save(output_path, "JPEG", quality=95)
+
+    # remove original if different
+    if output_path != input_path and os.path.exists(input_path):
+        os.remove(input_path)
+
+    return output_path

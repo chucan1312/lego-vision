@@ -6,7 +6,6 @@ from app.routes.health import router as health_router
 from app.routes.analyze import router as analyze_router
 from app.routes.builds import router as builds_router
 from app.routes.recipes import router as recipes_router
-from app.utils.image_normalize import normalize_to_rgb
 
 
 app = FastAPI(title="LEGO Vision API")
