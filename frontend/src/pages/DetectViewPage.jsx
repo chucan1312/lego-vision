@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from "react";
+import parts from "../../../data/labels/parts.json"; // adjust path if needed
 
 export default function DetectViewPage({ imageUrl, detections, onBack }) {
   const imgRef = useRef(null);
@@ -35,10 +36,16 @@ export default function DetectViewPage({ imageUrl, detections, onBack }) {
     };
   }, [imgSize]);
 
+  // helper: convert id -> name
+  function labelToName(label) {
+    const key = String(label);
+    return parts?.[key]?.name || key;
+  }
+
   const counts = useMemo(() => {
     const map = {};
     for (const d of detections || []) {
-      const label = d.label || "unknown";
+      const label = String(d.label || "unknown");
       map[label] = (map[label] || 0) + 1;
     }
     return Object.entries(map).sort((a, b) => b[1] - a[1]);
@@ -56,7 +63,8 @@ export default function DetectViewPage({ imageUrl, detections, onBack }) {
         </button>
 
         <div className="text-sm text-gray-600">
-          Total detections: <span className="font-semibold">{detections.length}</span>
+          Total detections:{" "}
+          <span className="font-semibold">{detections.length}</span>
         </div>
       </div>
 
@@ -88,7 +96,11 @@ export default function DetectViewPage({ imageUrl, detections, onBack }) {
                 }`}
               >
                 <div className="flex items-center justify-between">
-                  <span className="font-semibold">{label}</span>
+                  <span className="font-semibold">
+                    {labelToName(label)}
+                    <span className="ml-2 text-xs opacity-70">({label})</span>
+                  </span>
+
                   <span className="rounded-full bg-gray-200 px-2 py-0.5 text-xs text-gray-700">
                     {count}
                   </span>
@@ -110,7 +122,7 @@ export default function DetectViewPage({ imageUrl, detections, onBack }) {
             />
 
             {(detections || []).map((d) => {
-              const isActive = !activeLabel || d.label === activeLabel;
+              const isActive = !activeLabel || String(d.label) === String(activeLabel);
 
               const x = d.bbox.x * scale.sx;
               const y = d.bbox.y * scale.sy;
@@ -126,17 +138,16 @@ export default function DetectViewPage({ imageUrl, detections, onBack }) {
                     top: y,
                     width: w,
                     height: h,
-                    opacity: isActive ? 0.95 : 0.08, // fade
+                    opacity: isActive ? 0.95 : 0.08,
                     transition: "opacity 180ms ease",
                     pointerEvents: "none",
                   }}
-                  title={`${d.label} (${d.confidence})`}
+                  title={`${labelToName(d.label)} (${d.label})`}
                 />
               );
             })}
           </div>
 
-          {/* Footer hint */}
           <div className="mt-3 text-xs text-gray-500">
             Tip: click a piece type on the left to highlight only those boxes.
           </div>
