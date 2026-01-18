@@ -123,7 +123,7 @@ export default function UploadPage({ onDone }) {
                 then suggest builds you can make right now.
               </p>
 
-              <div className="mt-6 flex flex-wrap gap-3">
+              <div className="mt-6 flex flex-wrap justify-center gap-3">
                 <FeatureBrick color="#00A3FF" text="📸 1 photo" />
                 <FeatureBrick color="#00C853" text="🧠 AI detection" />
                 <FeatureBrick color="#E3000B" text="🎯 Build matches" />
@@ -229,13 +229,17 @@ export default function UploadPage({ onDone }) {
               {loading && (
                 <div className="mt-4 rounded-2xl bg-[#FFF7CC] p-3 ring-2 ring-black/10">
                   <div className="h-3 w-full overflow-hidden rounded-full bg-black/10">
-                    <div className="h-full w-2/3 animate-pulse rounded-full bg-[#E3000B]" />
+                    <div className="relative h-full w-full">
+                      <div className="absolute inset-0 animate-[loadingBar_1.2s_ease-in-out_infinite] rounded-full bg-[#E3000B]" />
+                    </div>
                   </div>
+
                   <div className="mt-2 text-xs font-bold text-black/60">
                     Scanning pieces… matching builds… almost there!
                   </div>
                 </div>
               )}
+
             </div>
 
             {/* Action row */}
