@@ -6,7 +6,6 @@ from app.routes.health import router as health_router
 from app.routes.analyze import router as analyze_router
 from app.routes.builds import router as builds_router
 from app.routes.recipes import router as recipes_router
-from app.routes.corrections import router as corrections_router
 
 
 app = FastAPI(title="LEGO Vision API")
@@ -24,11 +23,10 @@ app.add_middleware(
 def root():
     return {"message": "LEGO Vision API running"}
 
-app.mount("/static", StaticFiles(directory="../data/recipes"), name="static")
+app.mount("/static", StaticFiles(directory="../data"), name="static")
 
 
 app.include_router(recipes_router, prefix="/api")
 app.include_router(health_router, prefix="/api")
 app.include_router(analyze_router, prefix="/api")
 app.include_router(builds_router, prefix="/api")
-app.include_router(corrections_router, prefix="/api")

@@ -1,15 +1,26 @@
+import os
+import uuid
 from fastapi import APIRouter, UploadFile, File
+
+from app.services.vision_pipeline import detect_and_classify
 
 router = APIRouter()
 
+UPLOAD_DIR = "data/uploads"
+os.makedirs(UPLOAD_DIR, exist_ok=True)
+
 @router.post("/analyze-image")
 async def analyze_image(file: UploadFile = File(...)):
-    # For now: return mock results so frontend can work
+    ext = os.path.splitext(file.filename)[1].lower()
+    filename = f"{uuid.uuid4().hex}{ext}"
+    save_path = os.path.join(UPLOAD_DIR, filename)
+
+    with open(save_path, "wb") as f:
+        f.write(await file.read())
+
+    detections = detect_and_classify(save_path)
+
     return {
-        "filename": file.filename,
-        "detected_parts": [
-            {"part": "2x4_brick", "count": 5, "avg_conf": 0.91},
-            {"part": "2x2_brick", "count": 3, "avg_conf": 0.88},
-            {"part": "wheel_small", "count": 4, "avg_conf": 0.93},
-        ],
+        "imageUrl": f"http://localhost:8000/static/uploads/{filename}",
+        "detections": detections
     }
