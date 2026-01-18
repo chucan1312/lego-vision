@@ -6,7 +6,7 @@ from ultralytics import YOLO
 from app.services.roboflow_detector import detect, to_xywh
 
 # CHANGE THIS to your classifier model path
-CLASSIFIER_PATH = "../ml/models/lego_classifier_best_5.pt"
+CLASSIFIER_PATH = "../ml/models/best.pt"
 classifier = YOLO(CLASSIFIER_PATH)
 
 CROP_DIR = "../data/uploads/crops"

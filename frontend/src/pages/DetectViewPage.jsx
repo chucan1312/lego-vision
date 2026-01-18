@@ -1,9 +1,40 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 
 export default function DetectViewPage({ imageUrl, detections, onBack }) {
-  const [activeLabel, setActiveLabel] = useState(null);
+  const imgRef = useRef(null);
 
-  // Count labels for sidebar
+  const [activeLabel, setActiveLabel] = useState(null);
+  const [imgSize, setImgSize] = useState({
+    naturalW: 1,
+    naturalH: 1,
+    displayW: 1,
+    displayH: 1,
+  });
+
+  function updateSizes() {
+    const img = imgRef.current;
+    if (!img) return;
+
+    setImgSize({
+      naturalW: img.naturalWidth || 1,
+      naturalH: img.naturalHeight || 1,
+      displayW: img.clientWidth || 1,
+      displayH: img.clientHeight || 1,
+    });
+  }
+
+  useEffect(() => {
+    window.addEventListener("resize", updateSizes);
+    return () => window.removeEventListener("resize", updateSizes);
+  }, []);
+
+  const scale = useMemo(() => {
+    return {
+      sx: imgSize.displayW / imgSize.naturalW,
+      sy: imgSize.displayH / imgSize.naturalH,
+    };
+  }, [imgSize]);
+
   const counts = useMemo(() => {
     const map = {};
     for (const d of detections || []) {
@@ -14,65 +45,101 @@ export default function DetectViewPage({ imageUrl, detections, onBack }) {
   }, [detections]);
 
   return (
-    <div style={{ padding: 20 }}>
-      <button onClick={onBack}>⬅ Back</button>
-      <h2 style={{ marginTop: 10 }}>Detected Pieces</h2>
+    <div className="min-h-screen bg-gray-50 p-4">
+      {/* Header */}
+      <div className="mb-4 flex items-center justify-between">
+        <button
+          onClick={onBack}
+          className="rounded-lg bg-white px-4 py-2 text-sm font-medium shadow hover:bg-gray-100"
+        >
+          ⬅ Back
+        </button>
 
-      <div style={{ display: "flex", gap: 20, marginTop: 10 }}>
-        {/* LEFT: sidebar */}
-        <div style={{ width: 260 }}>
-          <button onClick={() => setActiveLabel(null)}>
+        <div className="text-sm text-gray-600">
+          Total detections: <span className="font-semibold">{detections.length}</span>
+        </div>
+      </div>
+
+      <h2 className="mb-4 text-xl font-bold">Detected Pieces</h2>
+
+      <div className="grid grid-cols-1 gap-4 lg:grid-cols-[280px_1fr]">
+        {/* Sidebar */}
+        <div className="rounded-xl bg-white p-3 shadow">
+          <button
+            onClick={() => setActiveLabel(null)}
+            className={`w-full rounded-lg px-3 py-2 text-left text-sm font-medium transition ${
+              activeLabel === null
+                ? "bg-gray-900 text-white"
+                : "bg-gray-100 hover:bg-gray-200"
+            }`}
+          >
             Show All ({detections.length})
           </button>
 
-          <div style={{ marginTop: 10 }}>
+          <div className="mt-3 max-h-[70vh] space-y-2 overflow-auto pr-1">
             {counts.map(([label, count]) => (
-              <div
+              <button
                 key={label}
                 onClick={() => setActiveLabel(label)}
-                style={{
-                  padding: 10,
-                  marginBottom: 8,
-                  border: "1px solid #ddd",
-                  cursor: "pointer",
-                  background: activeLabel === label ? "#f2f2f2" : "white",
-                }}
+                className={`w-full rounded-lg px-3 py-2 text-left text-sm transition ${
+                  activeLabel === label
+                    ? "bg-blue-600 text-white"
+                    : "bg-white hover:bg-gray-100"
+                }`}
               >
-                <b>{label}</b> : {count}
-              </div>
+                <div className="flex items-center justify-between">
+                  <span className="font-semibold">{label}</span>
+                  <span className="rounded-full bg-gray-200 px-2 py-0.5 text-xs text-gray-700">
+                    {count}
+                  </span>
+                </div>
+              </button>
             ))}
           </div>
         </div>
 
-        {/* RIGHT: image + overlay */}
-        <div style={{ position: "relative", flex: 1 }}>
-          <img
-            src={imageUrl}
-            alt="uploaded"
-            style={{ width: "100%", display: "block" }}
-          />
+        {/* Image + overlay */}
+        <div className="rounded-xl bg-white p-3 shadow">
+          <div className="relative inline-block w-full">
+            <img
+              ref={imgRef}
+              src={imageUrl}
+              alt="uploaded"
+              className="max-h-[80vh] w-auto max-w-full rounded-lg"
+              onLoad={updateSizes}
+            />
 
-          {(detections || []).map((d) => {
-            const isActive = !activeLabel || d.label === activeLabel;
+            {(detections || []).map((d) => {
+              const isActive = !activeLabel || d.label === activeLabel;
 
-            return (
-              <div
-                key={d.id}
-                title={`${d.label} (${d.confidence})`}
-                style={{
-                  position: "absolute",
-                  left: d.bbox.x,
-                  top: d.bbox.y,
-                  width: d.bbox.w,
-                  height: d.bbox.h,
-                  border: "2px solid red",
-                  opacity: isActive ? 1 : 0.1, // fade effect
-                  transition: "opacity 0.2s ease",
-                  pointerEvents: "none",
-                }}
-              />
-            );
-          })}
+              const x = d.bbox.x * scale.sx;
+              const y = d.bbox.y * scale.sy;
+              const w = d.bbox.w * scale.sx;
+              const h = d.bbox.h * scale.sy;
+
+              return (
+                <div
+                  key={d.id}
+                  className="absolute rounded-md border-2 border-red-500"
+                  style={{
+                    left: x,
+                    top: y,
+                    width: w,
+                    height: h,
+                    opacity: isActive ? 0.95 : 0.08, // fade
+                    transition: "opacity 180ms ease",
+                    pointerEvents: "none",
+                  }}
+                  title={`${d.label} (${d.confidence})`}
+                />
+              );
+            })}
+          </div>
+
+          {/* Footer hint */}
+          <div className="mt-3 text-xs text-gray-500">
+            Tip: click a piece type on the left to highlight only those boxes.
+          </div>
         </div>
       </div>
     </div>

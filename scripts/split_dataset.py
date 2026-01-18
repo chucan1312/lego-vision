@@ -2,8 +2,8 @@ import os
 import random
 import shutil
 
-SOURCE_DIR = "ml/datasets/lego_classification_10k"          # your current folder with class folders
-OUTPUT_DIR = "ml/datasets/lego_splitted"    # new output folder
+SOURCE_DIR = "ml/datasets/lego_40"          # your current folder with class folders
+OUTPUT_DIR = "ml/datasets/lego_40_splitted"    # new output folder
 
 TRAIN_RATIO = 0.8
 VAL_RATIO = 0.1
