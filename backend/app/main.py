@@ -19,9 +19,11 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+
 @app.get("/")
 def root():
     return {"message": "LEGO Vision API running"}
+
 
 app.mount("/static", StaticFiles(directory="../data"), name="static")
 
