@@ -56,29 +56,27 @@ export default function UploadPage({ onDone }) {
       <header className="relative z-10">
         <div className="mx-auto max-w-6xl px-6 pt-6">
           <div className="rounded-[28px] bg-white shadow-[0_12px_0_#e6b800] ring-2 ring-black/10">
-            <div className="flex flex-col gap-4 px-5 py-5 sm:flex-row sm:items-center sm:justify-between">
+            <div className="flex flex-col gap-4 px-5 py-1 sm:flex-row sm:items-center sm:justify-between">
               {/* Left brand */}
               <div className="flex items-center gap-4">
                 <div className="relative">
-                  {/* LEGO-ish logo */}
-                  <div className="grid h-12 w-12 place-items-center rounded-2xl bg-[#E3000B] text-xl font-black text-white shadow-[0_8px_0_#b30000] ring-2 ring-black/10 transition hover:scale-[1.03] active:translate-y-[2px] active:shadow-[0_6px_0_#b30000]">
-                    L
-                  </div>
-                </div>
-
-                <div className="leading-tight">
-                  <div className="heading-font text-2xl font-extrabold text-black">
-                    LEGO Vision
-                  </div>
+                  {/* NEW: Full logo image replaces the red L square */}
+                  <img
+                    src="/lego-vision-logo.png"
+                    alt="LEGO Vision Logo"
+                    className="h-30 w-auto select-none object-contain"
+                    draggable={false}
+                  />
                 </div>
               </div>
 
               {/* Right nav */}
               <div className="flex flex-wrap items-center gap-2">
-                <NavPill text="Home" />
-                <NavPill text="How it works" />
-                <NavPill text="About" />
+                <NavPill text="Home" color="#00A3FF" />
+                <NavPill text="How it works" color="#00C853" />
+                <NavPill text="About" color="#E3000B" />
               </div>
+
             </div>
 
             {/* LEGO stripe under header */}
@@ -246,8 +244,8 @@ export default function UploadPage({ onDone }) {
                 disabled={!file || loading}
                 onClick={handleAnalyze}
                 className={`w-full rounded-2xl px-5 py-4 text-base font-extrabold shadow-[0_10px_0_#000000] transition active:translate-y-[3px] active:shadow-[0_7px_0_#000000] sm:w-auto ${!file || loading
-                    ? "cursor-not-allowed bg-black/40 text-white/80"
-                    : "bg-black text-white hover:scale-[1.02] hover:-translate-y-[1px]"
+                  ? "cursor-not-allowed bg-black/40 text-white/80"
+                  : "bg-black text-white hover:scale-[1.02] hover:-translate-y-[1px]"
                   }`}
               >
                 {loading ? (
@@ -331,16 +329,25 @@ export default function UploadPage({ onDone }) {
 
 /* ----------------- UI Pieces ----------------- */
 
-function NavPill({ text }) {
+function NavPill({ text, color = "#ff00d0" }) {
   return (
     <button
-      className="rounded-2xl bg-[#FFF7CC] px-4 py-2 text-sm font-extrabold text-black shadow-[0_6px_0_#eaeaea] ring-2 ring-black/10 transition hover:-translate-y-[1px] active:translate-y-[2px] active:shadow-[0_4px_0_#eaeaea]"
       type="button"
+      className="relative rounded-2xl px-6 py-3 text-sm font-extrabold text-white
+                 shadow-[0_10px_0_rgba(0,0,0,0.25)] ring-2 ring-black/10
+                 transition hover:-translate-y-[1px] hover:shadow-[0_12px_0_rgba(0,0,0,0.22)]
+                 active:translate-y-[2px] active:shadow-[0_7px_0_rgba(0,0,0,0.25)]"
+      style={{ backgroundColor: color }}
     >
+      {/* studs */}
+      <span className="absolute left-4 top-2 h-3 w-3 rounded-full bg-white/35 ring-1 ring-black/10" />
+      <span className="absolute right-4 top-2 h-3 w-3 rounded-full bg-white/35 ring-1 ring-black/10" />
+
       {text}
     </button>
   );
 }
+
 
 function FooterPill({ text }) {
   return (
@@ -397,12 +404,7 @@ function StudPattern() {
 
 /* ----------------- Decorations (UPDATED) ----------------- */
 
-function StudBrick({
-  className = "",
-  color = "#111827",
-  cols = 3,
-  rows = 2,
-}) {
+function StudBrick({ className = "", color = "#111827", cols = 3, rows = 2 }) {
   return (
     <div
       className={`pointer-events-none absolute rounded-[26px] ring-2 ring-black/10 shadow-[0_14px_0_rgba(0,0,0,0.18)] ${className}`}
@@ -448,6 +450,10 @@ function Decorations() {
         className="-left-14 top-40 h-28 w-44 rotate-[-8deg]"
       />
       <StudBrick
+        color="#00ff80"
+        className="-right-14 top-40 h-28 w-44 rotate-[20deg]"
+      />
+      <StudBrick
         color="#FF7A00"
         className="-left-10 top-[52%] h-24 w-36 rotate-[10deg]"
       />
@@ -460,27 +466,12 @@ function Decorations() {
         className="-right-12 bottom-24 h-24 w-40 rotate-[-10deg]"
       />
       <StudBrick
-        color="#111827"
-        className="-right-10 bottom-10 h-20 w-32 rotate-[10deg]"
+        color="#5300e3"
+        className="-left-12 bottom-24 h-24 w-40 rotate-[-10deg]"
       />
 
       {/* NEW: more bricks at the END of the page (bottom/footer area) */}
-      <StudBrick
-        color="#AF52DE"
-        className="left-8 bottom-4 hidden h-24 w-40 rotate-[-12deg] md:block"
-      />
-      <StudBrick
-        color="#00A3FF"
-        className="left-44 bottom-0 hidden h-20 w-32 rotate-[8deg] lg:block"
-      />
-      <StudBrick
-        color="#FF7A00"
-        className="right-44 bottom-0 hidden h-20 w-32 rotate-[-8deg] lg:block"
-      />
-      <StudBrick
-        color="#00C853"
-        className="right-8 bottom-6 hidden h-24 w-40 rotate-[12deg] md:block"
-      />
+      {/* (left empty because you said you will add later) */}
     </>
   );
 }
