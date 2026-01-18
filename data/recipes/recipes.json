@@ -215,6 +215,115 @@
                 "recipes/instructions_img/jet_ski/5_1x.png",
                 "recipes/instructions_img/jet_ski/6_1x.png"
             ]
+        },
+        {
+            "id": "red_car",
+            "name": "Red Car",
+            "parts": {
+                "2456": 1,
+                "3004": 1,
+                "3039": 1,
+                "3065": 1,
+                "34337": 4,
+                "4600": 2,
+                "87414": 4
+            },
+            "steps": [
+                "recipes/instructions_img/red_car/1_1x.png",
+                "recipes/instructions_img/red_car/2_1x.png",
+                "recipes/instructions_img/red_car/3_1x.png",
+                "recipes/instructions_img/red_car/4_1x.png",
+                "recipes/instructions_img/red_car/5_1x.png",
+                "recipes/instructions_img/red_car/6_1x.png"
+            ]
+        },
+        {
+            "id": "reindeer",
+            "name": "Reindeer",
+            "parts": {
+                "2456": 1,
+                "3001": 1,
+                "3003": 1,
+                "3004": 6,
+                "3005pe1": 2,
+                "3020": 1,
+                "3021": 2,
+                "3023": 5,
+                "3039": 1,
+                "3660": 2,
+                "3666": 1,
+                "3688": 1,
+                "3710": 1,
+                "4073": 1
+            },
+            "steps": [
+                "recipes/instructions_img/reindeer/1_1x.png",
+                "recipes/instructions_img/reindeer/2_1x.png",
+                "recipes/instructions_img/reindeer/3_1x.png",
+                "recipes/instructions_img/reindeer/4_1x.png",
+                "recipes/instructions_img/reindeer/5_1x.png",
+                "recipes/instructions_img/reindeer/6_1x.png",
+                "recipes/instructions_img/reindeer/7_1x.png",
+                "recipes/instructions_img/reindeer/8_1x.png",
+                "recipes/instructions_img/reindeer/9_1x.png",
+                "recipes/instructions_img/reindeer/10_1x.png",
+                "recipes/instructions_img/reindeer/11_1x.png",
+                "recipes/instructions_img/reindeer/12_1x.png",
+                "recipes/instructions_img/reindeer/13_1x.png",
+                "recipes/instructions_img/reindeer/14_1x.png",
+                "recipes/instructions_img/reindeer/15_1x.png",
+                "recipes/instructions_img/reindeer/16_1x.png"
+            ]
+        },
+        {
+            "id": "robot",
+            "name": "Robot",
+            "parts": {
+                "11211": 1,
+                "3001": 1,
+                "3003": 1,
+                "3004": 2,
+                "3022": 1,
+                "553": 1,
+                "3065": 1,
+                "6215": 1,
+                "92947": 1,
+                "98138": 2
+            },
+            "steps": [
+                "recipes/instructions_img/robot/1_1x.png",
+                "recipes/instructions_img/robot/2_1x.png",
+                "recipes/instructions_img/robot/3_1x.png",
+                "recipes/instructions_img/robot/4_1x.png",
+                "recipes/instructions_img/robot/5_1x.png",
+                "recipes/instructions_img/robot/6_1x.png",
+                "recipes/instructions_img/robot/7_1x.png",
+                "recipes/instructions_img/robot/8_1x.png"
+            ]
+        },
+        {
+            "id": "tree",
+            "name": "Tree",
+            "parts": {
+                "3003": 1,
+                "3022": 1,
+                "3031": 1,
+                "3040": 8,
+                "3688": 1,
+                "3941": 1,
+                "4286": 20
+            },
+            "steps": [
+                "recipes/instructions_img/tree/1_1x.png",
+                "recipes/instructions_img/tree/2_1x.png",
+                "recipes/instructions_img/tree/3_1x.png",
+                "recipes/instructions_img/tree/4_1x.png",
+                "recipes/instructions_img/tree/5_1x.png",
+                "recipes/instructions_img/tree/6_1x.png",
+                "recipes/instructions_img/tree/7_1x.png",
+                "recipes/instructions_img/tree/8_1x.png",
+                "recipes/instructions_img/tree/9_1x.png"
+            ]
         }
     ]
 }
