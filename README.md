@@ -111,67 +111,14 @@ JSON-based recipe storage (data/recipes/recipes.json)
 JSON parts mapping (data/parts/parts.json)
 Static instructions images served from backend
 
-📂 Project Structure
-lego-vision-app/
-│
-├── frontend/                # React app (UI)
-│
-├── backend/                 # FastAPI backend (API + static hosting)
-│   ├── app/
-│   │   ├── routes/          # API endpoints
-│   │   ├── services/        # Roboflow + YOLO pipeline logic
-│   │   └── utils/           # image conversion / normalization helpers
-│   └── venv/
-│
-├── ml/                      # YOLO training + datasets
-│   ├── datasets/
-│   └── models/
-│
-├── data/                    # recipes, parts, instruction images
-│   ├── parts/
-│   │   └── parts.json
-│   ├── recipes/
-│   │   └── recipes.json
-│   └── instructions_img/
-│
-├── scripts/                 # dataset split + utilities
-│
-└── README.md
+## 👥 Authors & Hackathon
 
-🧪 API Endpoints (Quick Test)
-Health Check
-GET /api/health
+This project was created for **nwHacks 2026**
 
-Analyze Image (Detection + Classification)
-POST /api/analyze-image
+### **Authors**
+- **Chuc An Trinh** — Developer
+- **Chau Thai** — Developer
 
-
-Returns:
-
-imageUrl
-
-detections[] with bounding boxes + predicted labels
-
-Match Builds
-POST /api/match-builds
-
-
-Input example:
-
-{
-  "inventory": {
-    "3001": 2,
-    "3003": 4
-  }
-}
-
-
-Returns:
-
-top10[] builds sorted by completion percent
-
-📬 Authors
-
-Built for nwHacks 2026 by (your team name here).
-
-DEVELOPER MODE
+### **Devpost**
+Learn more about the project on our Devpost submission:  
+👉 **[[LEGO Vision](https://devpost.com/software/lego-vision?_gl=1*15w3kun*_gcl_au*MzIyNTkyMjU2LjE3NjEyNzE2MTU.*_ga*NTA5MDk2MzQ3LjE3NjEyNzE2MTY.*_ga_0YHJK3Y10M*czE3Njg3NzY5MTUkbzMzJGcxJHQxNzY4Nzc4MDA3JGo2MCRsMCRoMA..)]**
