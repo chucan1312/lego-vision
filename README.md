@@ -93,23 +93,18 @@ Frontend runs at: http://localhost:5173
 ## 🛠️ Tech Stack
 
 Frontend:
-React (Vite)
-Tailwind CSS
-Fetch / REST API calls
+- React (Vite)
+- Tailwind CSS
+- Fetch / REST API calls
 
 Backend:
-Python
-FastAPI
-Uvicorn
+- Python
+- FastAPI
+- Uvicorn
 
 Computer Vision:
-Roboflow (Detection API)
-Ultralytics YOLOv8 (Classification model)
-
-Data:
-JSON-based recipe storage (data/recipes/recipes.json)
-JSON parts mapping (data/parts/parts.json)
-Static instructions images served from backend
+- Roboflow (Detection API)
+- Ultralytics YOLOv8 (Classification model)
 
 ## 👥 Authors & Hackathon
 
@@ -117,7 +112,7 @@ This project was created for **nwHacks 2026**
 
 ### **Authors**
 - **Chuc An Trinh** — Developer
-- **Chau Thai** — Developer
+- **Chau Thai** — PM, Developer 
 
 ### **Devpost**
 Learn more about the project on our Devpost submission:  
